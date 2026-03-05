@@ -1,0 +1,490 @@
+/* ========================================
+   RHAN – Clean Professional UI
+======================================== */
+
+/* ========= ROOT VARIABLES ========= */
+
+:root {
+  --primary: #4CAF50;
+  --primary-dark: #43A047;
+  --bg: #f7f8fa;
+  --card: #ffffff;
+  --text: #333;
+  --muted: #777;
+  --border: #e0e0e0;
+
+  --opening: #d1e7dd;
+  --exam: #cfe2ff;
+  --holiday: #f8d7da;
+  --closing: #e2e3ff;
+}
+
+/* ========= GLOBAL ========= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg);
+  margin: 0;
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ========= HEADER ========= */
+
+header {
+  background: var(--primary);
+  color: white;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+header h1 {
+  margin: 0;
+  font-weight: 600;
+}
+
+header nav {
+  margin-top: 12px;
+}
+
+header nav button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.25);
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+  margin: 0 5px;
+}
+
+header nav button:hover {
+  background: rgba(255,255,255,0.4);
+}
+
+header nav button.active {
+  background: white;
+  color: var(--primary);
+}
+
+/* ========= LAYOUT ========= */
+
+.container {
+  display: flex;
+  gap: 24px;
+  padding: 24px;
+  flex: 1;
+}
+
+.sidebar {
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+}
+
+main {
+  flex: 1;
+}
+
+/* ========= CARD STYLE ========= */
+
+.card {
+  background: var(--card);
+  padding: 16px;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* ========= TASK SECTION ========= */
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  background: white;
+  margin-bottom: 12px;
+  padding: 14px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: 0.2s;
+}
+
+li:hover {
+  transform: translateY(-2px);
+}
+
+li.done span {
+  text-decoration: line-through;
+  color: #aaa;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.priority-high { color: #E53935; font-weight: 500; }
+.priority-medium { color: #FB8C00; font-weight: 500; }
+.priority-low { color: #43A047; font-weight: 500; }
+
+.category {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.tags {
+  font-size: 11px;
+  color: #999;
+}
+
+.task-link {
+  text-decoration: none;
+  color: var(--primary);
+}
+
+.task-link:hover {
+  text-decoration: underline;
+}
+
+/* ========= ADD TASK ========= */
+
+.add-task {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.add-task input,
+.add-task select {
+  flex: 1 1 120px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  outline: none;
+}
+
+.add-task input:focus,
+.add-task select:focus {
+  border-color: var(--primary);
+}
+
+.add-task button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.add-task button:hover {
+  background: var(--primary-dark);
+}
+
+/* ========= FILTERS ========= */
+
+.task-filters {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+/* ========= CALENDAR ========= */
+
+#calendarContainer {
+  background: white;
+  padding: 14px;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+#calendarHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+#calendarHeader button {
+  background: var(--primary);
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+}
+
+#calendarHeader button:hover {
+  background: var(--primary-dark);
+}
+
+#calendar {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+#calendar th,
+#calendar td {
+  width: 14.28%;
+  height: 70px;
+  text-align: center;
+  vertical-align: top;
+  padding: 6px;
+  border-radius: 8px;
+  position: relative;
+}
+
+#calendar td:hover {
+  background: #f1f1f1;
+  cursor: pointer;
+}
+
+/* Task Day Highlight */
+#calendar td.task-day {
+  background: #e8f5e9;
+}
+
+/* DepEd Event Colors */
+#calendar td.opening { background: var(--opening); }
+#calendar td.exam { background: var(--exam); }
+#calendar td.holiday { background: var(--holiday); }
+#calendar td.closing { background: var(--closing); }
+
+/* Event Label */
+/* Event Labels in Calendar Cells */
+.event-label {
+  display: block;              /* Stack vertically */
+  margin: 2px 0;               /* Small spacing between labels */
+  padding: 2px 4px;            /* Small padding for pill shape */
+  font-size: 10px;             /* Small font for compact look */
+  font-weight: 500;
+  color: white;                /* Text color */
+  border-radius: 6px;          /* Rounded pill shape */
+  text-align: center;
+  white-space: nowrap;         /* Prevent wrapping */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: default;
+}
+
+/* Task Labels by Priority */
+.event-label[data-type="task-priority-3"] { background: #E53935; } /* High */
+.event-label[data-type="task-priority-2"] { background: #FB8C00; } /* Medium */
+.event-label[data-type="task-priority-1"] { background: #43A047; } /* Low */
+
+/* Holiday Labels */
+.event-label.ph-holiday { background: #FF6B6B; }   /* PH Holiday */
+.event-label.intl-holiday { background: #4DA6FF; } /* Intl Holiday */
+
+/* Optional: Add subtle shadow for readability */
+.event-label {
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+/* Philippine Holidays */
+.ph-holiday {
+  background-color: #ffe5e5;
+  border: 1px solid #ff6b6b;
+}
+
+/* International Holidays */
+.intl-holiday {
+  background-color: #e6f2ff;
+  border: 1px solid #4da6ff;
+}
+
+.holiday-label {
+  font-size: 10px;
+  margin-top: 4px;
+  display: block;
+}
+
+/* ========= POMODORO ========= */
+
+#pomodoroContainer {
+  text-align: center;
+}
+
+#timerDisplay {
+  font-size: 40px;
+  font-weight: 600;
+  margin: 12px 0;
+}
+
+.timer-controls button {
+  background: var(--primary);
+  border: none;
+  padding: 8px 14px;
+  margin: 4px;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+}
+
+.timer-controls button:hover {
+  background: var(--primary-dark);
+}
+
+/* ========= FILE PICKER ========= */
+
+#chooseFileBtn {
+  background: var(--primary);
+  border: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+}
+
+#fileNameDisplay {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ========= RESPONSIVE ========= */
+
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    max-height: none;
+  }
+
+  #calendar th,
+  #calendar td {
+    height: 55px;
+    font-size: 12px;
+  }
+
+  #timerDisplay {
+    font-size: 30px;
+  }
+}
+/* =============================
+   CALENDAR EVENT MODAL
+============================= */
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background: white;
+  padding: 24px;
+  border-radius: 16px;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+}
+
+.modal-content h3 {
+  margin: 0;
+  text-align: center;
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="time"],
+.modal-content input[type="color"] {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.modal-buttons button {
+  flex: 1;
+  margin: 0 4px;
+  padding: 8px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#saveEventBtn {
+  background: var(--primary);
+  color: white;
+}
+
+#cancelEventBtn {
+  background: #ccc;
+}
+/* =========================
+   Splash Screen Animation
+========================= */
+
+#splash-screen {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #1e1e2f, #2a2a72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.splash-logo {
+  width: 180px;
+  animation: logoIntro 2s ease forwards;
+}
+
+@keyframes logoIntro {
+  0% {
+    opacity: 0;
+    transform: scale(0.7);
+    filter: drop-shadow(0 0 0px rgba(0,0,0,0));
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 25px rgba(0,255,255,0.6));
+  }
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 12px rgba(0,255,255,0.4));
+  }
+}
+
+body.loaded #splash-screen {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}

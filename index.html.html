@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RHAN</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#4CAF50">
+</head>
+<body>
+  <!-- Splash Screen -->
+<div id="splash-screen">
+  <img src="logo.png.jpg" alt="RHAN Logo" class="splash-logo">
+</div>
+  <header>
+    <h1>RHAN</h1>
+    <button id="changeGroupBtn">Change Group</button>
+  </header>
+
+  <button id="installBtn" style="position:fixed; bottom:20px; right:20px; padding:12px 18px; background:#4CAF50; color:white; border:none; border-radius:12px; cursor:pointer; display:none;">Install RHAN</button>
+
+  <div class="container">
+    <!-- Sidebar Mini Menu -->
+    <aside class="sidebar">
+      <!-- Calendar -->
+      <div id="calendarContainer">
+        <div id="calendarHeader">
+          <button id="prevMonth">‹</button>
+          <h3 id="monthYear"></h3>
+          <button id="nextMonth">›</button>
+        </div>
+        <table id="calendar">
+          <thead>
+            <tr>
+              <th>Sun</th>
+              <th>Mon</th>
+              <th>Tue</th>
+              <th>Wed</th>
+              <th>Thu</th>
+              <th>Fri</th>
+              <th>Sat</th>
+            </tr>
+          </thead>
+          <tbody id="calendarBody"></tbody>
+        </table>
+      </div>
+
+      <!-- Pomodoro Timer -->
+      <div id="pomodoroContainer">
+        <h3>Pomodoro</h3>
+        <div id="timerDisplay">25:00</div>
+        <div class="timer-controls">
+          <button id="startTimer">Start</button>
+          <button id="pauseTimer">Pause</button>
+          <button id="resetTimer">Reset</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Task Filters -->
+      <nav class="task-filters">
+        <button id="filterAll" class="active">All</button>
+        <button id="filterToday">Today</button>
+        <button id="filterUpcoming">Upcoming</button>
+        <button id="filterCompleted">Completed</button>
+      </nav>
+
+      <!-- Category Filter -->
+      <div class="category-filter">
+        <label for="taskCategory">Category:</label>
+        <select id="taskCategory">
+          <option value="General" selected>General</option>
+          <option value="Work">Work</option>
+          <option value="Personal">Personal</option>
+          <option value="School">School</option>
+        </select>
+        <input type="text" id="taskTags" placeholder="Tags (comma separated)">
+      </div>
+
+      <!-- Add Task -->
+      <div class="add-task">
+  <input type="text" id="taskInput" placeholder="Add a new task...">
+  <input type="text" id="taskURL" placeholder="Optional link / file path">
+  <select id="taskPriority">
+    <option value="1">Low</option>
+    <option value="2" selected>Medium</option>
+    <option value="3">High</option>
+  </select>
+  <input type="date" id="taskDate">
+  <label>
+    <input type="checkbox" id="taskReminder"> Reminder
+  </label>
+  <button id="addBtn">+</button>
+  <!-- Inside .add-task -->
+<input type="file" id="taskFile" style="display:none">
+<button id="chooseFileBtn">📂 Choose File</button>
+<span id="fileNameDisplay">No file selected</span>    
+</div>
+
+      <!-- Task List -->
+      <ul id="taskList"></ul>
+    </main>
+  </div>
+
+  <!-- Calendar Event Modal -->
+<div id="eventModal" class="modal">
+  <div class="modal-content">
+    <h3>Add Calendar Event</h3>
+
+    <input type="text" id="eventTitle" placeholder="Event name" />
+    <input type="time" id="eventTime" />
+    
+    <label>Pick Date Color:</label>
+
+<div class="color-row">
+  <input type="color" id="eventColorPicker" value="#4CAF50">
+  <input type="text" id="eventColorText" value="#4CAF50">
+</div>
+
+    <label class="reminder-toggle">
+      <input type="checkbox" id="eventReminder" />
+      Set Alarm Reminder
+    </label>
+
+    <div class="modal-buttons">
+  <button id="saveEventBtn">Save</button>
+  <button id="cancelEventBtn">Cancel</button>
+  <button id="deleteEventBtn" style="background:#E53935; color:white;">Delete</button>
+</div>
+  </div>
+</div>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
